@@ -1,0 +1,77 @@
+body {
+    display: grid;
+}
+header {
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    font-family: 'Creepster', cursive;
+    color: #990000;
+    text-shadow: #ffffff;
+    font-size: larger;
+}
+main {
+    background-color: #ff0000;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#calcMain {
+    display: grid;
+    max-width: 480px;
+    max-height: 720px;
+    background-color: #ff0000;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: "disp disp disp disp"
+                         "clear plusMinus percent divide"
+                         "seven eight nine multi"
+                         "four five six minus"
+                         "one two three plus"
+                         "zero dec dubZ equals";
+
+}
+#display {
+    font-family: 'VT323', monospace;
+    font-size: 35px;
+    display: flex;
+    grid-area: disp;
+    background-color: #daf0da;
+    box-shadow: 10px 10px 50px #b7f1b7, 
+                -10px -10px 50px #b7f1b7;
+    justify-content: right;
+    align-items: center;
+}
+#one {grid-area: one;}
+#two {grid-area: two;}
+#three {grid-area: three;}
+#four {grid-area: four;}
+#five {grid-area: five;}
+#six {grid-area: six;}
+#seven {grid-area: seven;}
+#eight {grid-area: eight;}
+#nine {grid-area: nine;}
+#zero {grid-area: zero;}
+#decimal {grid-area: dec;}
+#doubleZero {grid-area: dubZ;}
+#plus {grid-area: plus;}
+#minus{grid-area: minus;}
+#multi{grid-area: multi;}
+#divide{grid-area: divide;}
+#equals{grid-area: equals;}
+#clear{grid-area: clear;}
+#plusMinus{grid-area: plusMinus;}
+#percent{grid-area: percent;}
+button {
+    background-color: #ff0000;
+    font-size: 25px;
+    max-width: 120px;
+    max-height: 120px;
+    justify-content: center;
+    border-radius: 15px;
+    padding: 10px 5px;
+    box-shadow: 30px 30px 60px #990000;
+}
+button:hover {
+    scale: 1.1;
+} 
