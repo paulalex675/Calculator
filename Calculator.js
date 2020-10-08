@@ -6,12 +6,12 @@ var display = document.querySelector("#display");
 var calc = [];
 var a = 0;
 var b = 0;
-var c = 0;
+var c = null;
 var operator = '';
 function check() {
-     if (calc.length < 2) {
-        a = calc[calc.length-1];
-    }else if (calc.length > 1) {
+     if (calc.length < 1) {
+        a = calc[0];
+    }else if (calc.length > 0) {
         b = calc[calc.length-1];
         a = calc[calc.length-2];
     }else return ('error');
@@ -31,6 +31,7 @@ function operate() {
     }else if (operator == 'percent') {
         c =  a / 100 * b;
     }
+    //calc.splice(0, calc.length);
     calc.push(c);
 
 }
@@ -53,14 +54,14 @@ btnClear.addEventListener('click', () => {
 })
 funcBut.forEach((button) => {
     button.addEventListener('click', () => {
-        calc.push(parseFloat(display.textContent));
+        calc.push(parseInt(display.textContent));
         operator = button.value;
         check();
         display.textContent = "";
     });
 })
 btnEquals.addEventListener('click', () => {
-    calc.push(parseFloat(display.textContent));
+    calc.push(parseInt(display.textContent));
     check();
     display.textContent = c;
 });

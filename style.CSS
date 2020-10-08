@@ -70,7 +70,8 @@ button {
     justify-content: center;
     border-radius: 15px;
     padding: 10px 5px;
-    box-shadow: 30px 30px 60px #990000;
+    box-shadow: 10px 10px 20px #990000;
+    border-color: #ff0000;
 }
 button:hover {
     scale: 1.1;
