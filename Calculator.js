@@ -3,21 +3,37 @@ const numBut = document.querySelectorAll(".nums");
 const funcBut = document.querySelectorAll(".funcs");
 const btnEquals = document.querySelector("#equals");
 var display = document.querySelector("#display");
-/*const btn1 = document.getElementById("#one");
-const btn2 = document.querySelector("#two");
-const btn3 = document.querySelector("#three");
-const btn4 = document.querySelector("#four");
-const btn5 = document.querySelector("#five");
-const btn6 = document.querySelector("#six");
-const btn7 = document.querySelector("#seven");
-const btn8 = document.querySelector("#eight");
-const btn9 = document.querySelector("#nine");
-const btn0 = document.querySelector("#zero");
-const btnDec = document.querySelector("#decimal");
-const btnDZ = document.querySelector("#doubleZero");
-const btnZero = document.querySelector("#zero");
-*/
 var calc = [];
+var a = 0;
+var b = 0;
+var c = 0;
+var operator = '';
+function check() {
+     if (calc.length < 2) {
+        a = calc[calc.length-1];
+    }else if (calc.length > 1) {
+        b = calc[calc.length-1];
+        a = calc[calc.length-2];
+    }else return ('error');
+    if (a != undefined && b != undefined) {
+    operate(); 
+    }
+}    
+function operate() {
+    if (operator == 'sum'){
+        c = a + b;
+    }else if (operator == 'sub'){
+        c = a - b;
+    }else if (operator == 'multi'){
+        c = a * b;
+    }else if (operator == 'divide'){
+        c =  a / b;        
+    }else if (operator == 'percent') {
+        c =  a / 100 * b;
+    }
+    calc.push(c);
+
+}
 numBut.forEach((button) => {
     button.addEventListener('click', () => {
         var newSum = document.createElement('div');
@@ -28,29 +44,24 @@ numBut.forEach((button) => {
 const btnClear = document.querySelector("#clear");
 btnClear.addEventListener('click', () => {
     display.textContent = "";
+    result = 0;
     calc.splice(0, calc.length);
-    })
+    a = 0;
+    b = 0;
+    c = 0;
+    operator = '';
+})
 funcBut.forEach((button) => {
     button.addEventListener('click', () => {
-        calc.push(display.textContent);
+        calc.push(parseFloat(display.textContent));
+        operator = button.value;
+        check();
         display.textContent = "";
-        var opera = document.createElement('div');
-        opera.textContent = button.value;
-        display.appendChild(opera);
-        calc.push(display.textContent);
-        display.textContent = "";
-    })
+    });
 })
 btnEquals.addEventListener('click', () => {
-    calc.push(display.textContent);
-    var answer = calc.join('');
-    console.log(eval(answer));
-
-})
+    calc.push(parseFloat(display.textContent));
+    check();
+    display.textContent = c;
+});
 const btnPlusMinus = document.querySelector("#plusMinus");
-const btnPercent = document.querySelector("#percent");
-const btnSum = document.querySelector("#plus");
-const btnSub = document.querySelector("#minus");
-const btnMulti = document.querySelector("#multi");
-const btnDivide = document.querySelector("#divide");
-
