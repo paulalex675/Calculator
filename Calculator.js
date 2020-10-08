@@ -30,6 +30,9 @@ function operate() {
         c =  a / b;        
     }else if (operator == 'percent') {
         c =  a / 100 * b;
+    }else if ( operator == '-/+') {
+        a = -a;
+        b = -b;
     }
     //calc.splice(0, calc.length);
     calc.push(c);
@@ -65,4 +68,3 @@ btnEquals.addEventListener('click', () => {
     check();
     display.textContent = c;
 });
-const btnPlusMinus = document.querySelector("#plusMinus");
