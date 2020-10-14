@@ -4,14 +4,14 @@ body {
 header {
     display: flex;
     justify-content: center;
-    background-color: black;
+    background-color: #56a096;
     font-family: 'Creepster', cursive;
-    color: #990000;
+    color: #000000;
     text-shadow: #ffffff;
     font-size: larger;
 }
 main {
-    background-color: #ff0000;
+    background-color: #81d6c9;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -20,11 +20,11 @@ main {
     display: grid;
     max-width: 480px;
     max-height: 720px;
-    background-color: #ff0000;
+    background-color: #71d6c9;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas: "disp disp disp disp"
-                         "clear plusMinus percent divide"
+                         "clear backSpace percent divide"
                          "seven eight nine multi"
                          "four five six minus"
                          "one two three plus"
@@ -60,19 +60,22 @@ main {
 #divide{grid-area: divide;}
 #equals{grid-area: equals;}
 #clear{grid-area: clear;}
-#plusMinus{grid-area: plusMinus;}
+#backSpace{grid-area: backSpace;}
 #percent{grid-area: percent;}
 button {
-    background-color: #ff0000;
+    background-color: #71d6c9;
     font-size: 25px;
     max-width: 120px;
     max-height: 120px;
     justify-content: center;
     border-radius: 15px;
     padding: 10px 5px;
-    box-shadow: 10px 10px 20px #990000;
-    border-color: #ff0000;
+    box-shadow: 10px 10px 20px #56a096;
+    border-color: #71d6c9;
 }
 button:hover {
     scale: 1.1;
 } 
+.funcs {
+    background-color: aqua;
+}

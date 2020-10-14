@@ -4,17 +4,27 @@ const funcBut = document.querySelectorAll(".funcs");
 const btnEquals = document.querySelector("#equals");
 var display = document.querySelector("#display");
 var calc = [];
-var a = 0;
-var b = 0;
+var a = null;
+var b = null;
 var c = null;
 var operator = '';
+var dotCounter = 0;
+function clear() {
+    display.textContent = "";
+    calc.splice(0, calc.length);
+    a = null;
+    b = null;
+    c = null;
+    dotCounter = 0;
+    operator = '';
+}
 function check() {
      if (calc.length < 1) {
         a = calc[0];
-    }else if (calc.length > 0) {
+        }else if (calc.length > 0) {
         b = calc[calc.length-1];
         a = calc[calc.length-2];
-    }else return ('error');
+        }else return ('error');
     if (a != undefined && b != undefined) {
     operate(); 
     }
@@ -22,49 +32,58 @@ function check() {
 function operate() {
     if (operator == 'sum'){
         c = a + b;
-    }else if (operator == 'sub'){
+        }else if (operator == 'sub'){
         c = a - b;
-    }else if (operator == 'multi'){
+        }else if (operator == 'multi'){
         c = a * b;
-    }else if (operator == 'divide'){
-        c =  a / b;        
-    }else if (operator == 'percent') {
+        }else if (operator == 'divide'){
+            if (a == 0 || b == 0) {
+                alert ("Hey! Divide by Zero? You sure about that?");
+                clear();
+                }else  c =  a / b;        
+        }else if (operator == 'percent') {
         c =  a / 100 * b;
-    }else if ( operator == '-/+') {
-        a = -a;
-        b = -b;
+        }else if ( operator == 'bckSpc') {
+        display.textContent = '';
+        calc.delete(calc.length -1)
     }
-    //calc.splice(0, calc.length);
+    display.textContent = c;
     calc.push(c);
-
 }
 numBut.forEach((button) => {
     button.addEventListener('click', () => {
-        var newSum = document.createElement('div');
-        newSum.textContent = button.value;
-        display.appendChild(newSum);
+            if (display.textContent == c) {
+                display.textContent = '';
+            }
+            var newSum = document.createElement('div');
+            newSum.textContent = button.value;
+            display.appendChild(newSum);
         })
     });
-const btnClear = document.querySelector("#clear");
-btnClear.addEventListener('click', () => {
-    display.textContent = "";
-    result = 0;
-    calc.splice(0, calc.length);
-    a = 0;
-    b = 0;
-    c = 0;
-    operator = '';
-})
 funcBut.forEach((button) => {
     button.addEventListener('click', () => {
-        calc.push(parseInt(display.textContent));
-        operator = button.value;
+        calc.push(parseInt(display.textContent)); 
+        display.textContent = '';
         check();
-        display.textContent = "";
+        operator = button.value;
+        dotCounter = 0;
     });
 })
 btnEquals.addEventListener('click', () => {
     calc.push(parseInt(display.textContent));
     check();
-    display.textContent = c;
+    display.textContent = Math.round(c * 10) / 10;
 });
+const btnClear = document.querySelector("#clear");
+btnClear.addEventListener('click', () => {
+   clear(); 
+});
+const btnDot = document.querySelector('#decimal')
+btnDot.addEventListener('click', () => {
+    dotCounter++
+    if (dotCounter > 1) {
+        alert ("Hey I'm only a simple calculator! What you tryin' a pull?");
+        clear();
+        alert ("MWAHAHA start again");
+    }
+})
